@@ -10,6 +10,11 @@ export default function Header() {
     setDark(document.documentElement.classList.contains('dark'));
   }, []);
 
+  const goHome = () => {
+    selectAnimation(null);
+    window.history.replaceState({}, '', '/');
+  };
+
   const toggleTheme = () => {
     const next = !dark;
     setDark(next);
@@ -19,8 +24,8 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border-subtle bg-header-bg backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <button onClick={() => selectAnimation(null)} className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+      <div className="mx-auto flex h-14 sm:h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+        <a href="/" onClick={(e) => { e.preventDefault(); goHome(); }} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round">
               <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -28,20 +33,19 @@ export default function Header() {
               <path d="M2 12l10 5 10-5" />
             </svg>
           </div>
-          <span className="text-lg font-semibold tracking-tight">
+          <span className="text-base sm:text-lg font-semibold tracking-tight">
             Fresh<span className="text-accent">Boost</span>
           </span>
-        </button>
-        <div className="flex items-center gap-4">
+        </a>
+        <div className="flex items-center gap-2 sm:gap-4">
           {selectedAnimationId && (
             <button
-              onClick={() => selectAnimation(null)}
-              className="text-sm text-muted hover:text-foreground transition-colors"
+              onClick={goHome}
+              className="text-xs sm:text-sm text-muted hover:text-foreground transition-colors"
             >
-              &larr; Back to all
+              &larr; <span className="hidden xs:inline">Back to all</span><span className="xs:hidden">Back</span>
             </button>
           )}
-          <span className="text-xs text-muted/60 hidden sm:inline">Micro Animations</span>
           <button
             onClick={toggleTheme}
             className="flex h-8 w-8 items-center justify-center rounded-lg border border-border-subtle bg-surface hover:bg-surface-2 transition-colors"
