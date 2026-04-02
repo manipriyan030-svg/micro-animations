@@ -2,9 +2,10 @@
 import { useState } from 'react';
 import { AnimationProps, CustomizeOptions } from './types';
 
-export default function HamburgerToggle({ color = '#00e5a0', size = 48, speed = 1, strokeWidth = 2 }: AnimationProps) {
+export default function HamburgerToggle({ color = '#EB742E', size = 48, speed = 1, strokeWidth = 2 }: AnimationProps) {
   const [open, setOpen] = useState(false);
   const dur = 0.3 / speed;
+  const id = 'ham-' + Math.random().toString(36).slice(2, 6);
 
   return (
     <svg
@@ -16,42 +17,29 @@ export default function HamburgerToggle({ color = '#00e5a0', size = 48, speed = 
       strokeWidth={strokeWidth}
       strokeLinecap="round"
       onClick={() => setOpen(!open)}
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: 'pointer', overflow: 'visible' }}
     >
-      <line
-        x1="4" y1="6" x2="20" y2="6"
-        style={{
-          transition: `all ${dur}s ease`,
-          transformOrigin: 'center',
-          transform: open ? 'rotate(45deg) translateY(0px)' : 'none',
-          ...(open ? { x1: 5, y1: 12, x2: 19, y2: 12 } : {}),
-        }}
-      >
-        {open && (
-          <animate attributeName="y1" from="6" to="12" dur={`${dur}s`} fill="freeze" />
-        )}
-      </line>
-      <line
-        x1="4" y1="12" x2="20" y2="12"
-        style={{
-          transition: `opacity ${dur}s ease`,
-          opacity: open ? 0 : 1,
-        }}
-      />
-      <line
-        x1="4" y1="18" x2="20" y2="18"
-        style={{
-          transition: `all ${dur}s ease`,
-          transformOrigin: 'center',
-          transform: open ? 'rotate(-45deg)' : 'none',
-          ...(open ? { x1: 5, y1: 12, x2: 19, y2: 12 } : {}),
-        }}
-      />
       <style>{`
-        svg line {
+        .${id}-top, .${id}-mid, .${id}-bot {
           transition: all ${dur}s ease;
+          transform-origin: 12px 12px;
         }
       `}</style>
+      <line
+        className={`${id}-top`}
+        x1="4" y1={open ? '12' : '6'} x2="20" y2={open ? '12' : '6'}
+        style={{ transform: open ? 'rotate(45deg)' : 'none' }}
+      />
+      <line
+        className={`${id}-mid`}
+        x1="4" y1="12" x2="20" y2="12"
+        style={{ opacity: open ? 0 : 1 }}
+      />
+      <line
+        className={`${id}-bot`}
+        x1="4" y1={open ? '12' : '18'} x2="20" y2={open ? '12' : '18'}
+        style={{ transform: open ? 'rotate(-45deg)' : 'none' }}
+      />
     </svg>
   );
 }
@@ -65,7 +53,7 @@ export function generateHamburgerCode(opts: CustomizeOptions) {
 </svg>`;
 
   const css = `.hamburger-toggle { cursor: pointer; }
-.hamburger-toggle line { transition: all ${dur}s ease; transform-origin: center; }
+.hamburger-toggle line { transition: all ${dur}s ease; transform-origin: 12px 12px; }
 .hamburger-toggle.open .line-top { transform: rotate(45deg); y1: 12; y2: 12; }
 .hamburger-toggle.open .line-mid { opacity: 0; }
 .hamburger-toggle.open .line-bot { transform: rotate(-45deg); y1: 12; y2: 12; }`;

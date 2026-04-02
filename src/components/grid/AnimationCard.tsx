@@ -23,7 +23,7 @@ export default function AnimationCard({ animation }: AnimationCardProps) {
       onClick={(e) => { e.preventDefault(); handleClick(); }}
       className="card-glow group relative z-10 flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border border-card-border bg-card-bg p-6 transition-all duration-200 hover:border-accent/30 hover:bg-card-hover no-underline"
     >
-      <div className="flex h-20 w-20 items-center justify-center" style={{ pointerEvents: 'none' }}>
+      <div className="flex h-20 w-20 items-center justify-center overflow-visible" style={{ pointerEvents: 'none' }}>
         <Component color="var(--accent)" size={40} speed={1} strokeWidth={2} />
       </div>
       <span className="text-sm text-foreground/80 group-hover:text-foreground transition-colors font-medium" style={{ pointerEvents: 'none' }}>{animation.name}</span>

@@ -78,6 +78,12 @@ body {
   box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
+/* Ensure SVG animations don't clip */
+.card-glow svg,
+.preview-box svg {
+  overflow: visible;
+}
+
 /* Color picker input styling */
 input[type="color"] {
   -webkit-appearance: none;

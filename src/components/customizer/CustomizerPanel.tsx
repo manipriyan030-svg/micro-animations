@@ -11,13 +11,16 @@ export default function CustomizerPanel() {
   if (!anim) return null;
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-12">
-      <div className="grid gap-8 lg:grid-cols-[1fr_340px]">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 py-6 sm:py-12">
+      <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1fr_340px]">
         {/* Preview */}
-        <div className="flex flex-col items-center justify-center rounded-2xl border border-card-border bg-card-bg p-12 min-h-[400px]">
+        <div className="preview-box flex flex-col items-center justify-center rounded-2xl border border-card-border bg-card-bg p-8 sm:p-12 min-h-[280px] sm:min-h-[400px] overflow-visible">
           <PreviewStage animation={anim} color={color} size={size} speed={speed} strokeWidth={strokeWidth} />
           <p className="mt-6 text-lg font-semibold">{anim.name}</p>
           <p className="mt-1 text-sm text-muted capitalize">{anim.trigger} &middot; {anim.category}</p>
+          {anim.trigger === 'click' && (
+            <p className="mt-2 text-xs text-muted/50">Click the animation to interact</p>
+          )}
         </div>
 
         {/* Controls */}
