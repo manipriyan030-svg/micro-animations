@@ -17,6 +17,18 @@ import SettingsGear, { generateGearCode } from './settings-gear';
 import EyeVisibility, { generateEyeCode } from './eye-visibility';
 import NotificationBadge, { generateNotifCode } from './notification-badge';
 import LoadingBar, { generateLoadingBarCode } from './loading-bar';
+import RefreshIcon, { generateRefreshCode } from './refresh-icon';
+import PlusMinus, { generatePlusMinusCode } from './plus-minus';
+import MenuDots, { generateMenuDotsCode } from './menu-dots';
+import LockUnlock, { generateLockCode } from './lock-unlock';
+import VolumeMute, { generateVolumeCode } from './volume-mute';
+import WifiSignal, { generateWifiCode } from './wifi-signal';
+import UploadIcon, { generateUploadCode } from './upload-icon';
+import StarFavorite, { generateStarCode } from './star-favorite';
+import BookmarkSave, { generateBookmarkCode } from './bookmark-save';
+import SendIcon, { generateSendCode } from './send-icon';
+import FilterIcon, { generateFilterCode } from './filter-icon';
+import EditPencil, { generateEditCode } from './edit-pencil';
 
 export const animations: AnimationDef[] = [
   { id: 'hamburger-toggle', name: 'Hamburger Menu', category: 'navigation', trigger: 'click', component: HamburgerToggle, generateCode: generateHamburgerCode },
@@ -37,4 +49,16 @@ export const animations: AnimationDef[] = [
   { id: 'eye-visibility', name: 'Eye Toggle', category: 'toggle', trigger: 'click', component: EyeVisibility, generateCode: generateEyeCode },
   { id: 'notification-badge', name: 'Notification', category: 'feedback', trigger: 'auto-loop', component: NotificationBadge, generateCode: generateNotifCode },
   { id: 'loading-bar', name: 'Loading Bar', category: 'loading', trigger: 'auto-loop', component: LoadingBar, generateCode: generateLoadingBarCode },
+  { id: 'refresh-icon', name: 'Refresh', category: 'action', trigger: 'hover', component: RefreshIcon, generateCode: generateRefreshCode },
+  { id: 'plus-minus', name: 'Plus / Minus', category: 'toggle', trigger: 'click', component: PlusMinus, generateCode: generatePlusMinusCode },
+  { id: 'menu-dots', name: 'Menu Dots', category: 'navigation', trigger: 'click', component: MenuDots, generateCode: generateMenuDotsCode },
+  { id: 'lock-unlock', name: 'Lock / Unlock', category: 'toggle', trigger: 'click', component: LockUnlock, generateCode: generateLockCode },
+  { id: 'volume-mute', name: 'Volume / Mute', category: 'toggle', trigger: 'click', component: VolumeMute, generateCode: generateVolumeCode },
+  { id: 'wifi-signal', name: 'WiFi Signal', category: 'feedback', trigger: 'auto-loop', component: WifiSignal, generateCode: generateWifiCode },
+  { id: 'upload-icon', name: 'Upload', category: 'action', trigger: 'hover', component: UploadIcon, generateCode: generateUploadCode },
+  { id: 'star-favorite', name: 'Star Favorite', category: 'action', trigger: 'click', component: StarFavorite, generateCode: generateStarCode },
+  { id: 'bookmark-save', name: 'Bookmark Save', category: 'action', trigger: 'click', component: BookmarkSave, generateCode: generateBookmarkCode },
+  { id: 'send-icon', name: 'Send', category: 'action', trigger: 'hover', component: SendIcon, generateCode: generateSendCode },
+  { id: 'filter-icon', name: 'Filter', category: 'navigation', trigger: 'click', component: FilterIcon, generateCode: generateFilterCode },
+  { id: 'edit-pencil', name: 'Edit Pencil', category: 'action', trigger: 'hover', component: EditPencil, generateCode: generateEditCode },
 ];
