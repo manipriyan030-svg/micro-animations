@@ -1,23 +1,48 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --accent: #00e5a0;
-  --card-bg: #141414;
-  --card-border: #1e1e1e;
-  --card-hover: #1a1a1a;
-  --muted: #888;
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --accent: #EB742E;
+  --accent-hover: #d4652a;
+  --card-bg: #f8f8f8;
+  --card-border: #e8e8e8;
+  --card-hover: #f0f0f0;
+  --muted: #6b7280;
+  --surface: #ffffff;
+  --surface-2: #f3f4f6;
+  --header-bg: rgba(255, 255, 255, 0.8);
+  --border-subtle: #e5e7eb;
+}
+
+.dark {
+  --background: #09090b;
+  --foreground: #f4f4f5;
+  --accent: #EB742E;
+  --accent-hover: #FF4F00;
+  --card-bg: #18181b;
+  --card-border: #27272a;
+  --card-hover: #1f1f23;
+  --muted: #a1a1aa;
+  --surface: #18181b;
+  --surface-2: #27272a;
+  --header-bg: rgba(9, 9, 11, 0.8);
+  --border-subtle: #27272a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --color-card-bg: var(--card-bg);
   --color-card-border: var(--card-border);
   --color-card-hover: var(--card-hover);
   --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-header-bg: var(--header-bg);
+  --color-border-subtle: var(--border-subtle);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -26,11 +51,12 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Subtle dot grid background */
 .dot-grid-bg {
-  background-image: radial-gradient(circle, #ffffff08 1px, transparent 1px);
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--foreground) 4%, transparent) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -42,13 +68,14 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: var(--muted);
   border-radius: 3px;
+  opacity: 0.3;
 }
 
 /* Animation card glow on hover */
 .card-glow:hover {
-  box-shadow: 0 0 20px rgba(0, 229, 160, 0.1);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 /* Color picker input styling */
@@ -65,7 +92,7 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   padding: 2px;
 }
 input[type="color"]::-webkit-color-swatch {
-  border: 2px solid #333;
+  border: 2px solid var(--card-border);
   border-radius: 6px;
 }
 
@@ -77,7 +104,7 @@ input[type="range"] {
 }
 input[type="range"]::-webkit-slider-runnable-track {
   height: 4px;
-  background: #333;
+  background: var(--surface-2);
   border-radius: 2px;
 }
 input[type="range"]::-webkit-slider-thumb {
@@ -88,4 +115,5 @@ input[type="range"]::-webkit-slider-thumb {
   background: var(--accent);
   margin-top: -6px;
   cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }

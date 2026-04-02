@@ -19,7 +19,7 @@ export default function AnimationGrid() {
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
           Micro <span className="text-accent">Animations</span>
         </h1>
-        <p className="mt-4 text-lg text-muted">
+        <p className="mt-4 text-lg text-muted max-w-xl mx-auto">
           Browse, customize, and export beautiful micro animations. No signup required.
         </p>
       </div>
@@ -30,10 +30,10 @@ export default function AnimationGrid() {
           <button
             key={cat.id}
             onClick={() => setCategory(cat.id)}
-            className={`rounded-full px-4 py-1.5 text-sm transition-all ${
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
               category === cat.id
-                ? 'bg-accent text-black font-medium'
-                : 'bg-white/5 text-muted hover:bg-white/10 hover:text-white'
+                ? 'bg-accent text-white shadow-md shadow-accent/20'
+                : 'bg-surface-2 text-muted hover:bg-card-hover hover:text-foreground'
             }`}
           >
             {cat.label}

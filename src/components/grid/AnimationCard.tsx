@@ -12,7 +12,6 @@ export default function AnimationCard({ animation }: AnimationCardProps) {
 
   const handleClick = () => {
     selectAnimation(animation.id);
-    // Also update URL as fallback
     const url = new URL(window.location.href);
     url.searchParams.set('animation', animation.id);
     window.history.pushState({}, '', url.toString());
@@ -22,13 +21,13 @@ export default function AnimationCard({ animation }: AnimationCardProps) {
     <a
       href={`?animation=${animation.id}`}
       onClick={(e) => { e.preventDefault(); handleClick(); }}
-      className="card-glow group relative z-10 flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border border-card-border bg-card-bg p-6 transition-all duration-200 hover:border-accent/20 hover:bg-card-hover no-underline"
+      className="card-glow group relative z-10 flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border border-card-border bg-card-bg p-6 transition-all duration-200 hover:border-accent/30 hover:bg-card-hover no-underline"
     >
       <div className="flex h-20 w-20 items-center justify-center" style={{ pointerEvents: 'none' }}>
-        <Component color="#00e5a0" size={40} speed={1} strokeWidth={2} />
+        <Component color="var(--accent)" size={40} speed={1} strokeWidth={2} />
       </div>
-      <span className="text-sm text-muted group-hover:text-foreground transition-colors" style={{ pointerEvents: 'none' }}>{animation.name}</span>
-      <span className="text-[10px] uppercase tracking-wider text-muted/40" style={{ pointerEvents: 'none' }}>{animation.trigger}</span>
+      <span className="text-sm text-foreground/80 group-hover:text-foreground transition-colors font-medium" style={{ pointerEvents: 'none' }}>{animation.name}</span>
+      <span className="text-[10px] uppercase tracking-wider text-muted/50 font-medium" style={{ pointerEvents: 'none' }}>{animation.trigger}</span>
     </a>
   );
 }

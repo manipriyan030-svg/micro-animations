@@ -15,7 +15,7 @@ interface CustomizerState {
 }
 
 const defaults = {
-  color: '#00e5a0',
+  color: '#EB742E',
   size: 48,
   speed: 1,
   strokeWidth: 2,

@@ -16,7 +16,7 @@ export default function CustomizerPanel() {
         {/* Preview */}
         <div className="flex flex-col items-center justify-center rounded-2xl border border-card-border bg-card-bg p-12 min-h-[400px]">
           <PreviewStage animation={anim} color={color} size={size} speed={speed} strokeWidth={strokeWidth} />
-          <p className="mt-6 text-lg font-medium">{anim.name}</p>
+          <p className="mt-6 text-lg font-semibold">{anim.name}</p>
           <p className="mt-1 text-sm text-muted capitalize">{anim.trigger} &middot; {anim.category}</p>
         </div>
 
@@ -40,16 +40,16 @@ export default function CustomizerPanel() {
                     const val = e.target.value;
                     if (/^#[0-9A-Fa-f]{0,6}$/.test(val)) setColor(val);
                   }}
-                  className="flex-1 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-mono text-white outline-none focus:border-accent"
-                  placeholder="#00e5a0"
+                  className="flex-1 rounded-lg border border-border-subtle bg-surface-2 px-3 py-1.5 text-sm font-mono outline-none focus:border-accent transition-colors"
+                  placeholder="#EB742E"
                 />
               </div>
               <div className="flex gap-1.5">
-                {['#00e5a0', '#3b82f6', '#ef4444', '#f59e0b', '#a855f7', '#ec4899', '#14b8a6', '#f97316', '#8b5cf6', '#ffffff'].map(c => (
+                {['#EB742E', '#FF4F00', '#3b82f6', '#ef4444', '#f59e0b', '#a855f7', '#ec4899', '#14b8a6', '#8b5cf6', '#1a1a1a'].map(c => (
                   <button
                     key={c}
                     onClick={() => setColor(c)}
-                    className={`h-6 w-6 rounded-full border transition-transform hover:scale-110 ${color === c ? 'border-white scale-110' : 'border-white/10'}`}
+                    className={`h-6 w-6 rounded-full border-2 transition-transform hover:scale-110 ${color === c ? 'border-foreground scale-110' : 'border-transparent'}`}
                     style={{ background: c }}
                   />
                 ))}
@@ -85,7 +85,7 @@ export default function CustomizerPanel() {
           </div>
 
           {/* Reset */}
-          <button onClick={reset} className="text-xs text-muted hover:text-white transition-colors">
+          <button onClick={reset} className="text-xs text-muted hover:text-foreground transition-colors">
             Reset to defaults
           </button>
 
