@@ -13,9 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FreshBoost Micro Animations",
-  description: "Browse, customize, and export beautiful micro animations. No signup required.",
+  title: {
+    default: "Micro Animations | FreshBoost",
+    template: "%s | FreshBoost",
+  },
+  description: "FreshBoost's curated micro animations library. Customize instantly, export seamlessly, elevate your web designs—no signup required.",
   keywords: ["micro animations", "svg animations", "css animations", "icon animations", "webflow"],
+  icons: {
+    icon: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

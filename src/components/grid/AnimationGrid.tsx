@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { animations } from '@/animations';
 import { CATEGORIES } from '@/lib/constants';
 import AnimationCard from './AnimationCard';
@@ -8,6 +8,25 @@ import type { AnimationCategory } from '@/animations/types';
 export default function AnimationGrid() {
   const [category, setCategory] = useState<string>('all');
   const [search, setSearch] = useState('');
+  const [visibleCount, setVisibleCount] = useState(10);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Reset visible count when filters change
+  const filterKey = `${category}-${search}`;
+  const [lastFilterKey, setLastFilterKey] = useState(filterKey);
+  if (filterKey !== lastFilterKey) {
+    setVisibleCount(10);
+    setLastFilterKey(filterKey);
+  }
+
+  // Smooth scroll to grid
+  const scrollToGrid = useCallback(() => {
+    if (containerRef.current) {
+      setTimeout(() => {
+        containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, []);
 
   const filtered = animations
     .filter(a => category === 'all' || a.category === category as AnimationCategory)
@@ -17,15 +36,25 @@ export default function AnimationGrid() {
       return a.name.toLowerCase().includes(q) || a.id.toLowerCase().includes(q) || a.category.includes(q) || a.trigger.includes(q);
     });
 
+  const handleLoadMore = () => {
+    setVisibleCount(prev => Math.min(prev + 10, filtered.length));
+    scrollToGrid();
+  };
+
+  const handleShowLess = () => {
+    setVisibleCount(10);
+    scrollToGrid();
+  };
+
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 sm:py-12">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 sm:py-12" ref={containerRef}>
       {/* Hero */}
       <div className="mb-8 sm:mb-12 text-center">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
           Micro <span className="text-accent">Animations</span>
         </h1>
         <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-muted max-w-xl mx-auto">
-          Browse, customize, and export beautiful micro animations. No signup required.
+          FreshBoost's curated micro animations. Customize instantly, export seamlessly, elevate your designs.
         </p>
       </div>
 
@@ -82,11 +111,34 @@ export default function AnimationGrid() {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {filtered.map(anim => (
-            <AnimationCard key={anim.id} animation={anim} />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {filtered.slice(0, visibleCount).map(anim => (
+              <AnimationCard key={anim.id} animation={anim} />
+            ))}
+          </div>
+          
+          {/* Load More / Show Less Button */}
+          {filtered.length > 10 && (
+            <div className="mt-8 sm:mt-10 text-center">
+              {visibleCount < filtered.length ? (
+                <button
+                  onClick={handleLoadMore}
+                  className="rounded-xl bg-accent px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base font-medium text-white shadow-md shadow-accent/20 hover:bg-accent/90 transition-all duration-200 hover:shadow-lg hover:shadow-accent/30 active:scale-95"
+                >
+                  Load More
+                </button>
+              ) : (
+                <button
+                  onClick={handleShowLess}
+                  className="rounded-xl bg-accent px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base font-medium text-white shadow-md shadow-accent/20 hover:bg-accent/90 transition-all duration-200 hover:shadow-lg hover:shadow-accent/30 active:scale-95"
+                >
+                  Show Less
+                </button>
+              )}
+            </div>
+          )}
+        </>
       )}
 
       {/* Divider */}

@@ -29,6 +29,30 @@ import BookmarkSave, { generateBookmarkCode } from './bookmark-save';
 import SendIcon, { generateSendCode } from './send-icon';
 import FilterIcon, { generateFilterCode } from './filter-icon';
 import EditPencil, { generateEditCode } from './edit-pencil';
+import ChatBubble, { generateChatBubbleCode } from './chat-bubble';
+import MailIcon, { generateMailCode } from './mail-icon';
+import ClockIcon, { generateClockCode } from './clock-icon';
+import HomeIcon, { generateHomeCode } from './home-icon';
+import ShieldCheck, { generateShieldCheckCode } from './shield-check';
+import LightningBolt, { generateLightningCode } from './lightning-bolt';
+import ExpandArrows, { generateExpandCode } from './expand-arrows';
+import SliderToggle, { generateSliderToggleCode } from './slider-toggle';
+import LoadingDotsWave, { generateLoadingDotsWaveCode } from './loading-dots-wave';
+import SpinnerBars, { generateSpinnerBarsCode } from './spinner-bars';
+import UserIcon, { generateUserCode } from './user-icon';
+import CalendarIcon, { generateCalendarCode } from './calendar-icon';
+import ZoomIn, { generateZoomInCode } from './zoom-in';
+import ZoomOut, { generateZoomOutCode } from './zoom-out';
+import ShareIcon, { generateShareCode } from './share-icon';
+import LinkIcon, { generateLinkCode } from './link-icon';
+import PulseDot, { generatePulseDotCode } from './pulse-dot';
+import SpinnerPulse, { generateSpinnerPulseCode } from './spinner-pulse';
+import SkeletonLoad, { generateSkeletonCode } from './skeleton-load';
+import ProgressCircle, { generateProgressCircleCode } from './progress-circle';
+import ThumbsUp, { generateThumbsUpCode } from './thumbs-up';
+import MoonSun, { generateMoonSunCode } from './moon-sun';
+import PowerButton, { generatePowerCode } from './power-button';
+import SortIcon, { generateSortCode } from './sort-icon';
 
 export const animations: AnimationDef[] = [
   { id: 'hamburger-toggle', name: 'Hamburger Menu', category: 'navigation', trigger: 'click', component: HamburgerToggle, generateCode: generateHamburgerCode },
@@ -61,4 +85,28 @@ export const animations: AnimationDef[] = [
   { id: 'send-icon', name: 'Send', category: 'action', trigger: 'hover', component: SendIcon, generateCode: generateSendCode },
   { id: 'filter-icon', name: 'Filter', category: 'navigation', trigger: 'click', component: FilterIcon, generateCode: generateFilterCode },
   { id: 'edit-pencil', name: 'Edit Pencil', category: 'action', trigger: 'hover', component: EditPencil, generateCode: generateEditCode },
+  { id: 'chat-bubble', name: 'Chat Bubble', category: 'feedback', trigger: 'auto-loop', component: ChatBubble, generateCode: generateChatBubbleCode },
+  { id: 'mail-icon', name: 'Mail', category: 'action', trigger: 'hover', component: MailIcon, generateCode: generateMailCode },
+  { id: 'clock-icon', name: 'Clock', category: 'feedback', trigger: 'auto-loop', component: ClockIcon, generateCode: generateClockCode },
+  { id: 'home-icon', name: 'Home', category: 'navigation', trigger: 'hover', component: HomeIcon, generateCode: generateHomeCode },
+  { id: 'shield-check', name: 'Shield Check', category: 'feedback', trigger: 'auto-play', component: ShieldCheck, generateCode: generateShieldCheckCode },
+  { id: 'lightning-bolt', name: 'Lightning Bolt', category: 'feedback', trigger: 'auto-loop', component: LightningBolt, generateCode: generateLightningCode },
+  { id: 'expand-arrows', name: 'Expand', category: 'toggle', trigger: 'click', component: ExpandArrows, generateCode: generateExpandCode },
+  { id: 'slider-toggle', name: 'Slider Toggle', category: 'toggle', trigger: 'click', component: SliderToggle, generateCode: generateSliderToggleCode },
+  { id: 'loading-dots-wave', name: 'Dots Wave', category: 'loading', trigger: 'auto-loop', component: LoadingDotsWave, generateCode: generateLoadingDotsWaveCode },
+  { id: 'spinner-bars', name: 'Spinner Bars', category: 'loading', trigger: 'auto-loop', component: SpinnerBars, generateCode: generateSpinnerBarsCode },
+  { id: 'user-icon', name: 'User', category: 'navigation', trigger: 'auto-loop', component: UserIcon, generateCode: generateUserCode },
+  { id: 'calendar-icon', name: 'Calendar', category: 'action', trigger: 'auto-loop', component: CalendarIcon, generateCode: generateCalendarCode },
+  { id: 'zoom-in', name: 'Zoom In', category: 'action', trigger: 'auto-loop', component: ZoomIn, generateCode: generateZoomInCode },
+  { id: 'zoom-out', name: 'Zoom Out', category: 'action', trigger: 'auto-loop', component: ZoomOut, generateCode: generateZoomOutCode },
+  { id: 'share-icon', name: 'Share', category: 'action', trigger: 'auto-loop', component: ShareIcon, generateCode: generateShareCode },
+  { id: 'link-icon', name: 'Link', category: 'action', trigger: 'auto-loop', component: LinkIcon, generateCode: generateLinkCode },
+  { id: 'pulse-dot', name: 'Pulse Dot', category: 'feedback', trigger: 'auto-loop', component: PulseDot, generateCode: generatePulseDotCode },
+  { id: 'spinner-pulse', name: 'Spinner Pulse', category: 'loading', trigger: 'auto-loop', component: SpinnerPulse, generateCode: generateSpinnerPulseCode },
+  { id: 'skeleton-load', name: 'Skeleton Loader', category: 'loading', trigger: 'auto-loop', component: SkeletonLoad, generateCode: generateSkeletonCode },
+  { id: 'progress-circle', name: 'Progress Circle', category: 'loading', trigger: 'auto-loop', component: ProgressCircle, generateCode: generateProgressCircleCode },
+  { id: 'thumbs-up', name: 'Thumbs Up', category: 'action', trigger: 'click', component: ThumbsUp, generateCode: generateThumbsUpCode },
+  { id: 'moon-sun', name: 'Moon / Sun', category: 'toggle', trigger: 'click', component: MoonSun, generateCode: generateMoonSunCode },
+  { id: 'power-button', name: 'Power Button', category: 'toggle', trigger: 'click', component: PowerButton, generateCode: generatePowerCode },
+  { id: 'sort-icon', name: 'Sort', category: 'navigation', trigger: 'auto-loop', component: SortIcon, generateCode: generateSortCode },
 ];

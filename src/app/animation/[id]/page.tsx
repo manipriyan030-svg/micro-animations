@@ -1,28 +1,18 @@
-'use client';
-import { useEffect, use } from 'react';
-import { useCustomizerStore } from '@/stores/customizer-store';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import CustomizerPanel from '@/components/customizer/CustomizerPanel';
+import { Metadata } from 'next';
+import { animations } from '@/animations';
+import AnimationClient from './AnimationClient';
 
-export default function AnimationPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params);
-  const selectAnimation = useCustomizerStore(s => s.selectAnimation);
-  const selectedAnimationId = useCustomizerStore(s => s.selectedAnimationId);
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const anim = animations.find(a => a.id === id);
+  const name = anim ? anim.name : id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  return {
+    title: name,
+    description: `Customize and export the ${name} micro animation. Adjust color, size, speed, and download the code.`,
+  };
+}
 
-  useEffect(() => {
-    if (id && selectedAnimationId !== id) {
-      selectAnimation(id);
-    }
-  }, [id, selectedAnimationId, selectAnimation]);
-
-  return (
-    <div className="flex min-h-screen flex-col dot-grid-bg">
-      <Header />
-      <main className="flex-1">
-        <CustomizerPanel />
-      </main>
-      <Footer />
-    </div>
-  );
+export default async function AnimationPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  return <AnimationClient id={id} />;
 }
